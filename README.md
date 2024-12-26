@@ -98,5 +98,3 @@ This project is licensed under the MIT License.
 - **scikit-learn** for powering the recommendation algorithm.
 
 ---
-
-For any questions or support, feel free to contact [Your Name or Email].
