@@ -1,31 +1,106 @@
+/* General Body Styling */
 body {
     font-family: Arial, sans-serif;
+    background-color: #000; /* Black background */
+    color: #e4c40d; /* Yellow text */
+    margin: 0;
+    padding: 0;
+}
+
+/* Header Styling */
+h1 {
     text-align: center;
-    margin-top: 50px;
+    color: #e4c40d; /* Yellow text */
+    margin: 20px 0;
 }
 
-form {
-    margin-bottom: 20px;
+/* Paragraph Styling */
+p {
+    text-align: center;
+    color: #e4c40d; /* Yellow text */
 }
 
-input {
-    padding: 10px;
-    font-size: 16px;
+/* Movie Container */
+.movie-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px auto;
+    max-width: 1200px;
 }
 
-button {
-    padding: 10px 15px;
-    font-size: 16px;
-    background-color: #007BFF;
-    color: white;
-    border: none;
+/* Movie Card */
+.movie-card {
+    background-color: #333; /* Dark Gray for Card Background */
+    border: 2px solid #e4c40d; /* Yellow Border */
+    border-radius: 10px;
+    overflow: hidden;
+    width: 150px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(255, 215, 0, 0.3); /* Yellow Shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.movie-card img {
+    width: 100%;
+    height: 225px;
+    object-fit: cover;
     cursor: pointer;
 }
 
-button:hover {
-    background-color: #0056b3;
+.movie-card h3 {
+    font-size: 14px;
+    margin: 10px 0;
+    color: #e4c40d; /* Yellow Text */
 }
 
-ul {
-    list-style-type: none;
+.movie-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 15px rgba(255, 215, 0, 0.5); /* Brighter Yellow Shadow on Hover */
+}
+
+/* Search Form */
+.search-form {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.search-form input[type="text"] {
+    padding: 10px;
+    width: 300px;
+    border: 2px solid #e4c40d; /* Yellow Border */
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #333; /* Dark Gray Background */
+    color: #e4c40d; /* Yellow Text */
+}
+
+.search-form input[type="text"]::placeholder {
+    color: #e4c40d; /* Yellow Placeholder Text */
+}
+
+.search-form button {
+    padding: 10px 20px;
+    background-color: #e4c40d; /* Yellow Button */
+    color: #000; /* Black Text */
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-form button:hover {
+    background-color: #e4c40d; /* Slightly Brighter Yellow on Hover */
+}
+
+/* Link Styling */
+a {
+    text-decoration: none;
+    color: #e4c40d; /* Yellow Text */
+}
+
+a:hover {
+    text-decoration: underline;
 }

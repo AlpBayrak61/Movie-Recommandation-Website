@@ -3,18 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movie Recommender</title>
+    <title>Recommendations for {{ movie_name }}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Movie Recommender</h1>
-    <form method="POST" action="/recommend">
-        <label for="movie_name">Enter a movie name:</label>
-        <input type="text" id="movie_name" name="movie_name" required>
-        <button type="submit">Get Recommendations</button>
-    </form>
+    <h1>Recommendations for "{{ movie_name }}"</h1>
     {% if recommendations %}
-        <h2>Recommended Movies for "{{ movie_name }}":</h2>
         <div class="movie-container">
             {% for movie in recommendations %}
                 <div class="movie-card">
@@ -27,9 +21,9 @@
                 </div>
             {% endfor %}
         </div>
-        
     {% elif error %}
         <p style="color: red; text-align: center;">{{ error }}</p>
     {% endif %}
+    <a href="{{ url_for('home') }}">Back to Main Page</a>
 </body>
 </html>
