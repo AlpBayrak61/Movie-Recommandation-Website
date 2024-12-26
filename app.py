@@ -13,7 +13,6 @@ df = pd.read_csv("movie_dataset.csv")
 # Select features
 features = ['keywords', 'cast', 'genres', 'director']
 
-# Fill NaN values with empty strings and combine features
 for feature in features:
     df[feature] = df[feature].fillna('')
 
@@ -22,12 +21,10 @@ def combine_features(row):
 
 df["combined_features"] = df.apply(combine_features, axis=1)
 
-# Create count matrix and cosine similarity matrix
 cv = CountVectorizer()
 count_matrix = cv.fit_transform(df["combined_features"])
 cosine_sim = cosine_similarity(count_matrix)
 
-# Helper functions
 def get_title_from_index(index):
     return df[df.index == index]["title"].values[0]
 
@@ -45,7 +42,7 @@ def get_movie_poster(title):
         data = response.json()
         if data["results"]:
             poster_path = data["results"][0]["poster_path"]
-            return f"https://image.tmdb.org/t/p/w500{poster_path}"  # Use the appropriate size (w500 for medium)
+            return f"https://image.tmdb.org/t/p/w500{poster_path}" 
         else:
             return "https://via.placeholder.com/500x750?text=No+Image"  # Placeholder for missing posters
     except Exception as e:
@@ -54,12 +51,10 @@ def get_movie_poster(title):
     
 @app.route('/', methods=['GET', 'POST'])
 def home():
-    search_query = request.form.get('search', '')  # Get the search query from the form
+    search_query = request.form.get('search', '')  
     if search_query:
-        # Filter movies based on the search query
         movies = df[df['title'].str.contains(search_query, case=False, na=False)][['title']].head(50).copy()
     else:
-        # Default to the first 50 movies
         movies = df.head(50)[['title']].copy()
 
     movies['poster_url'] = movies['title'].apply(get_movie_poster)  # Fetch posters
@@ -68,14 +63,13 @@ def home():
 
 @app.route('/recommend/<movie_name>')
 def recommend_movie(movie_name):
-    # Your recommendation logic here
     try:
         movie_index = get_index_from_title(movie_name)
         similar_movies = list(enumerate(cosine_sim[movie_index]))
         sorted_similar_movies = sorted(similar_movies, key=lambda x: x[1], reverse=True)
 
         recommendations = []
-        for element in sorted_similar_movies[1:11]:  # Skip the first (itself)
+        for element in sorted_similar_movies[1:11]:  
             index = element[0]
             movie_title = get_title_from_index(index)
             movie_details = {
@@ -103,7 +97,7 @@ def recommend():
         sorted_similar_movies = sorted(similar_movies, key=lambda x: x[1], reverse=True)
 
         recommendations = []
-        for element in sorted_similar_movies[1:11]:  # Skip the first (itself)
+        for element in sorted_similar_movies[1:11]:  
             index = element[0]
             movie_title = get_title_from_index(index)
             movie_details = {
